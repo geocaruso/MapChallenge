@@ -69,6 +69,6 @@ print(azimuthal)
 print(plate)
 dev.off()
 
-png("2023_Day6/Asia.png")
+png("2023_Day6/Asia.png", units="cm",height= 17, width = 17,res= 300)
 print(azimuthal)
 dev.off()
