@@ -33,7 +33,7 @@ plate<-ggplot()+
   theme_bw()+
   labs(title = "#30DayMapChallenge 2023 Day 6 - Asia ",
        subtitle ="Not sure about the limits of Asia but 5000km from Mt Everest sounds like a reasonnable estimate",
-       caption = "geoffrey.caruso@uni.lu with NaturalEarth data and RStudio")+
+       caption = "geoffrey.caruso@uni.lu with RStats and NaturalEarth data")+
   theme(plot.subtitle = element_text(color = "grey10", size = 8),
         panel.border = element_rect(colour = "gold", fill=NA, linewidth =12))
 
