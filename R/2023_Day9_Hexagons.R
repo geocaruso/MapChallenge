@@ -78,7 +78,7 @@ geom_sf(data=Bees, size=0.05,col="gold", pch=6)+
 geom_sf(data=Bees, size=0.2,col="grey20", pch=18)+
   scale_fill_gradient(low = "gold", high = "darkred",
                       breaks=c(5,10,15,20,25, 30),
-                      name="Honeybee \n colonies (x1000)")+
+                      name="Honeybee \ncolonies (x1000)")+
   #scale_color_gradient(low = "gold", high = "darkred")+
   theme_bw()+
   guides(fill = guide_colourbar(barwidth = 20, barheight = 0.5,
@@ -110,13 +110,17 @@ cubic<-ggplot()+
   geom_sf(data=honeycombs4, fill=NA, col="goldenrod")+
   theme_bw()
 
-
 #Classical discretized map (quantile)
 source("https://raw.githubusercontent.com/geocaruso/cartolux/main/R/ggplot.themap.R")
 choro<-ggplot.themap(DB,varname ="tot",
+                     n=7,
                      low.colour = "gold", high.colour = "darkred",
                      n.digits=0,
-                     leg.title="Colonies per sq.km")
+                     leg.title="Colonies per sq.km \n[quantiles]",
+                     outline.colour="white",
+                     outline.width=0.1,
+                     main.title="Honeybee colonies density per French Departement",
+                     sub.title="geoffrey.caruso@uni.lu  (Data: DGAL, Declaration des ruches, 2022)")
 
 #Bundle
 pdf("2023_Day9/2023_Day9_Hexagons.pdf")
