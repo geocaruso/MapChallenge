@@ -132,19 +132,28 @@ p2<-ggplot()+
                     labels=leg.labels,
                     na.value="white")+
   theme_bw()+
-  theme(panel.border = element_rect(colour = "darkgreen", fill=NA, linewidth =10),
+  labs(title='Density of OSM trees in Benelux, France, Italy and Germany',
+       subtitle = "(aka Density of cities and OSM contribution effort. #30DayMapChallenge Day15 - OSM)",
+       caption = "geoffrey.caruso@uni.lu - Data: OSM contributors.
+       \nMapping process:RStats: GiscoR::gisco_get_grid (10km grid), OSM query and sf \nwith osmdata::osmdata_sf lapplied to each cell by batches of countries\n Then ClassInt for discretizing (otherwise you won't see anything really), ggplot2")+
+  theme(panel.border = element_rect(colour = "darkgreen", fill=NA, linewidth =12),
         axis.text.y = element_text(margin = margin(0,-1.2,0,1.2, unit = 'cm'),
                                    colour = "darkgreen", size=4),
         axis.text.x = element_text(margin = margin(-1.,0,1,0, unit = 'cm'),
                                    colour = "darkgreen", size=4),
         axis.ticks=element_blank(),
         panel.grid.major=element_line(colour="darkgreen", linewidth=0.2, linetype = "dashed"),
-        plot.title = element_text(color = "darkgreen", size = 7),
+        plot.title = element_text(size = 14, color = "darkgreen"),
+        plot.subtitle = element_text(size = 10, color = "goldenrod"),
         panel.background = element_rect(fill = "white"),
-        legend.position = c(0.2, 0.2),
+        legend.position = c(0.2, 0.24),
         legend.title = element_text(size = 7), 
-        legend.text = element_text(size = 7)
+        legend.text = element_text(size = 7),
+        plot.caption = element_text(size = 8),
+        legend.key=element_rect(colour='transparent'),
+        legend.background = element_blank()
   )
+
 
 pdf("2023_Day15/Europe_n_4th.pdf")
 #print(p)
