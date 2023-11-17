@@ -1,4 +1,5 @@
 #MapChallenge - Day 12 - South America
+#geoffrey.caruso@uni.lu
 
 library(sf)
 library(rmapshaper)
