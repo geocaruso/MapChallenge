@@ -64,6 +64,23 @@ Wjk<-ggplot()+geom_sf(data=H2)+
   geom_sf(data=HDIea, fill=NA, linewidth=0.5, col="black")+
   theme_wsj()
 
+#Box
+cl.intvl<-classIntervals(HDIea$HDI_2019, style="box")
+HDIea$box.HDI<-factor(classInt::findCols(cl.intvl))
+#This is quite long at world scale
+H3<-sf_stripes(HDIea,"box.HDI",angle=35,n=c(50,300),reverse=FALSE)
+
+Wbox<-ggplot()+geom_sf(data=H3)+
+  geom_sf(data=HDIea, fill=NA, linewidth=0.5, col="black")+
+  theme_wsj()+
+  labs(title='#Human Development Index 2019',
+       subtitle = "White [0.23,0.59); Light stripes [0.59,0.74); Heavy stripes [0.74,0.83); Black [0.84 ,1.19)",
+       caption = "Data downloaded from www.esri.com/geoinquiries \nMapping process: Rstats. Own function sf_stripes() and classInt box style for classification")+
+  theme(plot.title = element_text(size = 14),
+        plot.subtitle = element_text(size = 7),
+        plot.caption = element_text(size = 8)) 
+
+
 #Jenks Life Expectancy
 cl.intvl<-classIntervals(HDIea$Life_expec, n=6, style="jenks")
 HDIea$jenks.LifE<-factor(classInt::findCols(cl.intvl))
@@ -73,7 +90,7 @@ H3<-sf_stripes(HDIea,"jenks.LifE",angle=30,n=c(10,300),reverse=FALSE)
 WLE<-ggplot()+geom_sf(data=H3)+
   geom_sf(data=HDIea, fill=NA, linewidth=0.5, col="black")+
   theme_wsj()+
-  labs(title='#Life Expectancy',
+  labs(title='#Human Development Index',
        subtitle = "",
        caption = "Data downloaded from www.esri.com/geoinquiries")+
   theme(plot.title = element_text(size = 14),
@@ -83,6 +100,7 @@ WLE<-ggplot()+geom_sf(data=H3)+
 pdf("2023_DayBW/HDI.pdf")
 print(Wqt)
 print(Wjk)
+print(Wbox)
 print(WLE)
 dev.off()
 
