@@ -68,14 +68,14 @@ Wjk<-ggplot()+geom_sf(data=H2)+
 cl.intvl<-classIntervals(HDIea$HDI_2019, style="box")
 HDIea$box.HDI<-factor(classInt::findCols(cl.intvl))
 #This is quite long at world scale
-H3<-sf_stripes(HDIea,"box.HDI",angle=35,n=c(50,300),reverse=FALSE)
+H3<-sf_stripes(HDIea,"box.HDI",angle=35,n=c(80,200),reverse=FALSE)
 
 Wbox<-ggplot()+geom_sf(data=H3)+
-  geom_sf(data=HDIea, fill=NA, linewidth=0.5, col="black")+
+  geom_sf(data=HDIea, fill=NA, linewidth=0.2, col="black")+
   theme_wsj()+
   labs(title='#Human Development Index 2019',
-       subtitle = "White [0.23,0.59); Light stripes [0.59,0.74); Heavy stripes [0.74,0.83); Black [0.84 ,1.19)",
-       caption = "Data downloaded from www.esri.com/geoinquiries \nMapping process: Rstats. Own function sf_stripes() and classInt box style for classification")+
+       subtitle = "White no data; Rare stripes [0.23,0.59); Light stripes [0.59,0.74); Heavy stripes [0.74,0.83); Black [0.84 ,1.19)",
+       caption = "Data downloaded from www.esri.com/geoinquiries \nMapping process: Rstats. Own function sf_stripes() and classInt box style for classification\ngeoffrey.caruso@uni.lu #30DayMapChallenge - Day 24 - Black and White")+
   theme(plot.title = element_text(size = 14),
         plot.subtitle = element_text(size = 7),
         plot.caption = element_text(size = 8)) 
