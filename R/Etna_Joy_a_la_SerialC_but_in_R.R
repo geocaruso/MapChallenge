@@ -88,7 +88,7 @@ etnadf<-data.frame(segment=1:length(lmptetna))
 etnadf$geom<-lmptetna
 etnasf<-st_as_sf(etnadf)
 etnaptsf<-sf::st_cast(etnasf,"POINT")
-etnaptsf$persegment <- sequence(rle(etnaptsf$segment)$lengths)
+etnaptsf$persegment <- rev(sequence(rle(etnaptsf$segment)$lengths))
 
 DTMc<-terra::crop(DTM,etnasf)
 
@@ -97,7 +97,7 @@ g2<-ggplot()+
   geom_sf(data=lsf, col='white')+
   #geom_sf(data=perpetna, col="white", size=0.1)+
   scale_fill_gradient(high="gold", low="black")+
-  #geom_sf(data=etnasf,col="white", size=0.05, alpha=0.5)+
+  geom_sf(data=etnaptsf,aes(col=persegment), size=0.05, alpha=0.5)+
   geom_text(data=LabelsOD, aes(x=X, y=Y,label=Name), col="white", size=4)+
   theme_bw()
 g2
